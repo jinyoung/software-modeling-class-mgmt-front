@@ -114,7 +114,7 @@ export default new Router({
           }
         },
        {
-         path: 'courses/:courseId/classes',
+         path: 'courses/:courseId/clazzes',
          name: 'classes',
          component: ClassManagement,
          beforeEnter: RouterGuard.requireUser,
