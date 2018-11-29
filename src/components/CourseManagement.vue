@@ -106,7 +106,7 @@
 
           var fullUri = new URL(course._links.self.href);
 
-          window.location="#"+ fullUri.pathname + "/clazzes";
+          window.location="#/"+ fullUri.pathname + "/clazzes";
 
        }
     }
