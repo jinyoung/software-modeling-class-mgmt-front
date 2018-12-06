@@ -1,5 +1,5 @@
 <template>
-    <md-card :class="editMode ? 'md-primary' : ''">
+    <md-card :class="value.title!=null && value.title.length > 10 ? 'md-primary' : ''">
      <!--md-card-media>
         <img src="https://images.careers360.mobi/sites/default/files/field/image/2015/04/08/Courses-1.jpg" alt="People">
       </md-card-media-->
@@ -19,7 +19,12 @@
             min: {{value.minEnrollment}},
             max: {{value.maxEnrollment}}
         </div>
+
         <div v-else class="md-subhead">
+
+
+        <md-checkbox v-model="limitEnrollment"> Limit Enrollment </md-checkbox>
+        <div v-if="limitEnrollment">
           Enrollment:
             <md-input-container>
               <label>min</label>
@@ -31,6 +36,7 @@
               <md-input type="number"
                         v-model="value.maxEnrollment"></md-input>
             </md-input-container>
+        </div>
         </div>
       </md-card-header>
 
@@ -71,6 +77,7 @@
     },
     data() {
       return {
+        limitEnrollment: false
       }
     },
     watch: {},

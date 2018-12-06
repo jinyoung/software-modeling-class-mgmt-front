@@ -10,18 +10,18 @@
   </div>
 </template>
 <script>
-  export default {
-    props: {},
+  export default {      // public class CourseManagement {
+    props: {},               // public
     data() {
       return {
-        courses: [],
-        newCourse: {
+        courses: [],         // private Course[] courses;
+        newCourse: {         // private Course newCourse = {title: 'New Course'};
           title: 'New Course'
         }
 
       }
     },
-    created() {
+    created() {              // public CourseManagement(){   ... }
 
       var me = this;
 
@@ -51,8 +51,8 @@
 //       });
     },
     watch: {},
-    methods: {
-      updateCourse(course){
+    methods: {                // 메서드 선언부
+      updateCourse(course){   //  public void updateCourse(Course course){...}
 
         $.ajax({
           url: course._links.self.href,
@@ -68,7 +68,7 @@
 //          alert('Successfully Updated!')
 //        });
       },
-       addCourse(course){
+       addCourse(course){   //  public void addCourse(Course course){...}
 
           var me = this;
 
@@ -85,7 +85,7 @@
              },
           })
        },
-       removeCourse(course){
+       removeCourse(course){    //  public void removeCourse(Course course){...}
         var me = this;
         $.ajax({
           url: course._links.self.href,
@@ -102,7 +102,7 @@
 //            me.courses.splice(index, 1);
 //          });
        },
-       jumpToClasses(course){
+       jumpToClasses(course){     //  public void jumpToClasses(Course course){...}
 
           var fullUri = new URL(course._links.self.href);
 

@@ -14,7 +14,19 @@
             <md-option value="wait-for-instructor">WAIT FOR INSTRUCTOR</md-option>
           </md-select>
           <div v-else>{{value.status}}</div>
+
+          <div v-if="value.course!=null">
+            Course Detail:
+
+            <course v-model="value.course" ></course>
+          </div>
+          <div v-else>
+            ...로딩중...
+            <md-spinner :md-progress="progress"></md-spinner>
+          </div>
+
         </div>
+
 
       </md-card-header>
 
@@ -61,6 +73,28 @@
     methods: {
       load(){
           var me = this;
+
+
+          setTimeout(
+            function(){
+
+              $.ajax({
+                url: me.value._links.course.href,
+//                url: "http://localhost:8080/courses/" + me.value.courseId     //bad
+                success: function(result){
+                  var value = me.value;
+                  me.value.course = result;
+                  me.value = null;
+                  me.value = value;
+                }
+              });
+            }
+
+            ,
+           0
+          );
+
+
           $.ajax({
             url: this.value._links.clazzDays.href,
             success: function(result){
@@ -68,6 +102,8 @@
               me.value.clazzDays = result._embedded.clazzDays;
               me.value = null;
               me.value = value;
+
+
             }
           });
       },
